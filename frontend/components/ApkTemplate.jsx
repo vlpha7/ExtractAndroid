@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const mockData = {
+const data = {
   name:"Facebook", 
   SHA256:"3d690add7242d62ad559d3aefc8613015a8f6ed4aa8bc5e2962b857ab21834e1", 
   size:31489381, 
@@ -60,21 +60,27 @@ export default class ApkTemplate extends React.Component {
       },
     };
     const { expanded } = this.state;
+    const { data } = this.props;
 
     return (
       <div style={{width: '100%', margin: '10px auto'}}>
         <Card>
           <CardContent>
             <Typography variant="h5" component="h2">
-              {mockData.name}
+              {data.name}
             </Typography>
             <Typography color="textSecondary">
-              {`SHA256: ${mockData.SHA256}`}
+              {`SHA256: ${data.SHA256}`}
+            </Typography>
+            <Typography color="textSecondary">
+              {`Certificate: ${data.certificate_fingerprint}`}
             </Typography>
             <Typography variant="body2" component="p">
-              {`Size \xa0 \xa0 \xa0 \xa0 \xa0 \xa0 \xa0: \xa0${mockData.size}`}
+              {`Size: ${data.size}`}
               <br />
-              {`SDK Version : ${mockData.minSDKVersion}`}
+              {`SDK Version: ${data.minSDKVersion}`}
+              <br />
+              {`Number of permission: ${data.permission.length}`}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
@@ -91,7 +97,7 @@ export default class ApkTemplate extends React.Component {
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <Typography paragraph>Permissions:</Typography>
-                {mockData.permission.map(p => (
+                {data.permission.map(p => (
                   <Typography paragraph key={p}>
                     {p}
                   </Typography>

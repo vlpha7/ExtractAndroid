@@ -16,19 +16,26 @@ const mockData = {
 
 export default class ApiTemplate extends React.Component {
   render() {
+    console.log(this.props.data)
+    const {data, type} = this.props.data;
     return (
       <div style={{margin: '10px auto'}}>
         <Card>
           <CardContent>
             <Typography variant="h5" component="h2">
-              {mockData.name}
+              {type}
             </Typography>
-            <Typography color="textSecondary">
-              {`Introduce: ${mockData.introduce}`}
-            </Typography>
-            <Typography color='error' variant="body2" component="p">
-              {`Remove: ${mockData.remove}`}
-            </Typography>
+            {type === "API" ?
+              <div>
+                <Typography color="textSecondary">
+                  {`Introduce: ${data.introduce}`}
+                </Typography>
+                <Typography color='error' variant="body2" component="p">
+                  {`Remove: ${data.remove}`}
+                </Typography>
+              </div>
+            : null
+            }
           </CardContent>
         </Card>
       </div>
