@@ -1,0 +1,28 @@
+#root {
+  font-family: Roboto;
+}
+
+.ButtonBlue {
+  background: #B5D9EA;
+  border: 0;
+  border-radius: 8px;
+  height: 35px;
+  width: 100px;
+  color: #5B5C5B;
+}
+
+.ButtonBlue:focus {
+  outline: none;
+}
+
+.ButtonBlue:hover {
+  cursor: pointer;
+}
+
+.NoOutline:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
