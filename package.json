@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon  --exec babel-node ./bin/www",
+    "begin": "nodemon  --exec babel-node ./bin/www",
+    "start": "sudo node ./bin/www",
     "dev": "webpack -wd",
-    "start-dev": "concurrently \"npm run dev\" \"npm run start\""
+    "start-dev": "concurrently \"npm run dev\" \"npm run begin\""
   },
   "dependencies": {
     "@material-ui/core": "4.4.0",
