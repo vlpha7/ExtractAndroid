@@ -1,6 +1,6 @@
 import request from 'superagent';
 import _ from 'lodash';
-import { permissions, apis, apks } from './config';
+import { permissions, apis, apks, backendServer } from './config';
 
 const url = ""
 
@@ -8,18 +8,18 @@ function handleAPIError(err) {
   console.log(err);
 }
 
-export function getSearchByApiName(input) {
-  apks.sort(() => Math.floor(Math.random() * Math.floor(2)) ? -1 : 1);
-  return {
-    detail: {
-      type: _.indexOf(permissions, input) === -1 ? "API" : "Permission",
-      data: _.indexOf(permissions, input) === -1 ? _.find(apis, (o) => o.name === input) : _.find(permissions, (o) => o === input),
-    },
-    apks: apks 
+export async function getSearchByApiName(input) {
+  try {
+    const res = await request.post(`${backendServer}/api/search/byKeyword`)
+      .send({ keyword: input });
+    return {
+      detail: {
+        type: true ? "API" : "Permission",
+        data: true ? apis[0] : permissions[0],
+      },
+      apks: res.body 
+    };
+  } catch(err) {
+    handleAPIError(err);
   }
-  // return request.post(`${url}/api/search/searchApi`)
-  //   .type('form')
-  //   .send({ apiName })
-  //   .then(res => console.log(res))
-  //   .catch(handleAPIError);
 }

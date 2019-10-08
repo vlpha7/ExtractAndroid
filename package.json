@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "begin": "nodemon  --exec babel-node ./bin/www",
-    "start": "sudo node ./bin/www",
+    "begin": "nodemon  --exec PORT=3002 babel-node ./bin/www",
+    "start": "sudo NODE_ENV=production node ./bin/www",
     "dev": "webpack -wd",
     "start-dev": "concurrently \"npm run dev\" \"npm run begin\""
   },

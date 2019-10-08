@@ -272,3 +272,11 @@ export const apks = [
     permission: ['com.android.vending.BILLING', 'android.permission.VIBRATE', 'android.permission.WRITE_EXTERNAL_STORAGE', 'android.permission.ACCESS_NETWORK_STATE', 'android.permission.ACCESS_WIFI_STATE', 'android.permission.WAKE_LOCK', 'android.permission.INTERNET', 'android.permission.READ_PHONE_STATE']
   }
 ]
+
+let backendServer = "http://localhost:8080";
+if (process.env.NODE_ENV !== 'production') {
+  backendServer = "http://localhost:8080";
+}
+export {
+  backendServer
+};

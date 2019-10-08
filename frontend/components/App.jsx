@@ -1,10 +1,14 @@
 import React from 'react';
 import Header from './Header.jsx';
+import CompPage from './CompPage.jsx';
 import SearchPage from './SearchPage.jsx';
+import StatePage from './StatePage.jsx';
 import UploadPage from './UploadPage.jsx';
 
 const SearchPageIdx = 1;
 const UploadPageIdx = 2;
+const GraphStateIdx = 3;
+const CompatibleIdx = 4;
 
 export default class App extends React.Component {
   constructor(props) {
@@ -30,7 +34,19 @@ export default class App extends React.Component {
         <div style={{height: '90vh'}}>
           {CurrentPageIdx === SearchPageIdx ?
             <SearchPage/>
-          : <UploadPage/>
+          : null
+          }
+          {CurrentPageIdx === UploadPageIdx ?
+            <UploadPage/>
+          : null
+          }
+          {CurrentPageIdx === GraphStateIdx ?
+            <StatePage/>
+          : null
+          }
+          {CurrentPageIdx === CompatibleIdx ?
+            <CompPage/>
+          : null
           }
         </div>
       </div>
