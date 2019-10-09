@@ -30,11 +30,11 @@ export default class StatePage extends React.Component {
             </div>
             <div className="col-5">
               <h3>Top 10 Permissions used by APKs</h3>
-              {graphState.top10Permissions.map(p => <PermissionTemplate data={p}/>)}
+              {graphState.top10Permissions.map((p, idx) => <PermissionTemplate key={idx} data={p}/>)}
             </div>
             <div className="col-5">
               <h3>Top 10 APIs used by APKs</h3>
-              {graphState.top10Apis.map(a => <ApiTemplate data={a}/>)}
+              {graphState.top10Apis.map((a, idx) => <ApiTemplate key={idx} data={a}/>)}
             </div>
           </div>
         : <div> Loading </div>

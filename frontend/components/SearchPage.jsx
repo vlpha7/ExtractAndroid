@@ -15,23 +15,33 @@ export default class SearchPage extends React.Component {
       searchBarHeight: '100%',
       type: null,
       detail: null,
-      pageIdx: 0
+      pageIdx: 0,
+      hasNext: false,
+      currentText: ""
     }
     this.searchFunction = this.searchFunction.bind(this);
+    this.showMore = this.showMore.bind(this);
+  }
+
+  async showMore() {
+    let nextPageIdx = this.state.pageIdx + 1;
+    const { apks, hasNext } = await getSearchByApiName(this.state.currentText, nextPageIdx);
+    let nextApks = this.state.data.concat(apks);
+    this.setState({ data: nextApks, pageIdx: nextPageIdx, hasNext})
   }
 
   async searchFunction(text, pageIdx = 0) {
     console.log(text);
     //this.state.data === mockData ? this.setState({data: mockDataEmpty}) : this.setState({data: mockData});
     //this.state.searchBarHeight === '100%' ? this.setState({searchBarHeight: '10%'}) : this.setState({searchBarHeight: '100%'});
-    const { detail, type, apks } = await getSearchByApiName(text, pageIdx);
+    const { detail, type, apks, hasNext } = await getSearchByApiName(text, pageIdx);
     console.log(detail)
     console.log(apks)
-    this.setState({ detail, type, data: apks })
+    this.setState({ detail, type, data: apks, hasNext, currentText: text })
   }
 
   render() {
-    const { data, detail, type } = this.state;
+    const { data, detail, type, hasNext } = this.state;
     console.log(data.length)
 
     return (
@@ -44,6 +54,10 @@ export default class SearchPage extends React.Component {
                   <ApkTemplate key={idx} data={d}/>
                 );
               })
+            }
+            { hasNext ?
+              <button onClick={this.showMore}>Show more</button>
+            : null
             }
           </div>
           <div className="col-4">
