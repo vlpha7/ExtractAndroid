@@ -3,6 +3,7 @@ import React from 'react';
 import SearchBar from './SearchBar.jsx';
 import ApiTemplate from './ApiTemplate.jsx';
 import ApkTemplate from './ApkTemplate.jsx';
+import PermissionTemplate from './PermissionTemplate.jsx';
 
 import { getSearchByApiName } from '../apis'
 
@@ -12,23 +13,25 @@ export default class SearchPage extends React.Component {
     this.state = {
       data: [],
       searchBarHeight: '100%',
-      detail: null
+      type: null,
+      detail: null,
+      pageIdx: 0
     }
     this.searchFunction = this.searchFunction.bind(this);
   }
 
-  async searchFunction(text) {
+  async searchFunction(text, pageIdx = 0) {
     console.log(text);
     //this.state.data === mockData ? this.setState({data: mockDataEmpty}) : this.setState({data: mockData});
     //this.state.searchBarHeight === '100%' ? this.setState({searchBarHeight: '10%'}) : this.setState({searchBarHeight: '100%'});
-    const { detail, apks } = await getSearchByApiName(text);
+    const { detail, type, apks } = await getSearchByApiName(text, pageIdx);
     console.log(detail)
     console.log(apks)
-    this.setState({ detail, data: apks })
+    this.setState({ detail, type, data: apks })
   }
 
   render() {
-    const { data, detail } = this.state;
+    const { data, detail, type } = this.state;
     console.log(data.length)
 
     return (
@@ -38,15 +41,15 @@ export default class SearchPage extends React.Component {
           <div className="col-8">
             {data.map((d, idx) => {
                 return (
-                  <ApkTemplate key={d} data={d}/>
+                  <ApkTemplate key={idx} data={d}/>
                 );
               })
             }
           </div>
           <div className="col-4">
-            {detail ?
+            {detail && type == "API" ?
               <ApiTemplate data={detail}/>
-            : null}
+            : <PermissionTemplate data={detail}/>}
           </div>
         </div>
       </div>

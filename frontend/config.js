@@ -273,9 +273,9 @@ export const apks = [
   }
 ]
 
-let backendServer = "http://localhost:8080";
+let backendServer = "https://ed6deb6c.ngrok.io";
 if (process.env.NODE_ENV !== 'production') {
-  backendServer = "http://localhost:8080";
+  backendServer = "https://ed6deb6c.ngrok.io";
 }
 export {
   backendServer

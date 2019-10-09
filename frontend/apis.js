@@ -8,18 +8,16 @@ function handleAPIError(err) {
   console.log(err);
 }
 
-export async function getSearchByApiName(input) {
+export async function getSearchByApiName(input, pageIdx) {
   try {
     const res = await request.post(`${backendServer}/api/search/byKeyword`)
-      .send({ keyword: input });
-    return {
-      detail: {
-        type: true ? "API" : "Permission",
-        data: true ? apis[0] : permissions[0],
-      },
-      apks: res.body 
-    };
+      .send({ keyword: input, pageIdx });
+    return res.body;
   } catch(err) {
     handleAPIError(err);
   }
+}
+
+export function getGraphState() {
+    return request.get(`${backendServer}/api/graphState`);
 }

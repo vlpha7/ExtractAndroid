@@ -68,7 +68,7 @@ export default class ApkTemplate extends React.Component {
             <Typography variant="body2" component="p">
               {`Size: ${data.Size}`}
               <br />
-              {`SDK Version: ${data["Minimum SDK"]}`}
+              {`SDK Version: ${data["Minimum SDK"]["Api Level"]}`}
               <br />
               {`Number of permission: ${data.Permissions.length}`}
             </Typography>
@@ -88,8 +88,8 @@ export default class ApkTemplate extends React.Component {
             <CardContent>
               <Typography paragraph>Permissions:</Typography>
                 {data.Permissions.map(p => (
-                  <Typography paragraph key={p}>
-                    {p}
+                  <Typography paragraph key={p.Name}>
+                    {p.Name}
                   </Typography>
                 ))}
             </CardContent>
