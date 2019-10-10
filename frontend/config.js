@@ -273,10 +273,4 @@ export const apks = [
   }
 ]
 
-let backendServer = "https://6b718754.ngrok.io";
-if (process.env.NODE_ENV !== 'production') {
-  backendServer = "https://6b718754.ngrok.io";
-}
-export {
-  backendServer
-};
+export const backendServer = "http://43.240.96.211:8080/main";
