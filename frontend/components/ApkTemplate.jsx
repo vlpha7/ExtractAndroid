@@ -63,12 +63,12 @@ export default class ApkTemplate extends React.Component {
               {`SHA256: ${data.SHA256}`}
             </Typography>
             <Typography color="textSecondary">
-              {`Certificate: ${data["Certificate(Fingerprint)"]}`}
+              {`Certificate: ${data["Certificate(Fingerprint)"]["Name"]}`}
             </Typography>
             <Typography variant="body2" component="p">
               {`Size: ${data.Size}`}
               <br />
-              {`SDK Version: ${data["Minimum SDK"]["Api Level"]}`}
+              {data["Minimum SDK"] ? `SDK Version: ${data["Minimum SDK"]["Api Level"]}` : null}
               <br />
               {`Number of permission: ${data.Permissions.length}`}
             </Typography>

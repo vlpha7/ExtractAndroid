@@ -13,7 +13,7 @@ export default class Header extends React.Component {
     return (
       <div>
         <Navbar style={{backgroundColor: '#00B900'}} variant="dark">
-          <Navbar.Brand href="#home" onClick={() => switchPage(SearchPageIdx)}>Extract Android</Navbar.Brand>
+          <Navbar.Brand href="#home" onClick={() => switchPage(SearchPageIdx)}>KnowledgeZoo</Navbar.Brand>
           <Nav className="mr-auto">
           <Nav.Link href="#search" onClick={() => switchPage(SearchPageIdx)}>Home</Nav.Link>
           <Nav.Link href="#upload" onClick={() => switchPage(UploadPageIdx)}>Upload</Nav.Link>
