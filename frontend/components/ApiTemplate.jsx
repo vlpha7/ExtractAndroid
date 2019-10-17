@@ -18,10 +18,10 @@ export default class ApiTemplate extends React.Component {
                 {`Name: ${data.Name}`}
               </Typography>
               <Typography color="textSecondary">
-                {`Introduce: data.introduce`}
+                {data.IntroduceTag ? `Introduce: ${data.IntroduceTag['Name']}` : 'No data'}
               </Typography>
               <Typography color='error' variant="body2" component="p">
-                {`Remove: data.remove`}
+                {data.RemoveTag ? `Remove: ${data.RemoveTag}` : 'Not removed yet'}
               </Typography>
             </div>
           </CardContent>

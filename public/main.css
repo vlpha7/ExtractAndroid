@@ -26,3 +26,60 @@
 input:focus {
   outline: none;
 }
+
+.react-autosuggest__container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.react-autosuggest__input {
+  border: 1px;
+  border-radius: 8px;
+  border-color: #C4C4C4;
+  border-style: solid;
+  width: 80%;
+  height: 35px;
+  padding: 5px 15px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-radius: 8px;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 40px;
+  width: 80%;
+  border: 1px solid #C4C4C4;
+  background-color: #fff;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}

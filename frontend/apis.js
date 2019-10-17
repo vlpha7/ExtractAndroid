@@ -19,5 +19,9 @@ export async function getSearchByApiName(input, pageIdx) {
 }
 
 export function getGraphState() {
-    return request.get(`${backendServer}/api/graphState`);
+  return request.get(`${backendServer}/api/graphState`);
+}
+
+export function getAllSuggestion() {
+  return request.get(`${backendServer}/api/allSuggestion`)
 }
