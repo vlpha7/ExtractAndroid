@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "begin": "nodemon  --exec PORT=3002 babel-node ./bin/www",
-    "publish": "sudo NODE_ENV=production node ./bin/www",
-    "start": "concurrently \"npm run dev\" \"npm run publish\"",
+    "start": "sudo NODE_ENV=production node ./bin/www",
     "dev": "webpack -wd",
     "start-dev": "concurrently \"npm run dev\" \"npm run begin\""
   },
