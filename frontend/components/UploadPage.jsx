@@ -6,11 +6,21 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 export default class UploadPage extends React.Component {
   constructor(props) {
     super(props);
-    this.uploadFile = this.uploadFile.bind(this);
+    this.handleCreateImg = this.handleCreateImg.bind(this);
   }
 
-  uploadFile(e) {
-    console.log(document.getElementById('input').files[0]);
+  handleCreateImg() {
+    var formData = new FormData();
+    var files = document.getElementById("uploadFile").files;
+    console.log(files)
+    // formData.append("image", files[0]);
+
+    // superagent.put('http://ec2-54-155-37-35.eu-west-1.compute.amazonaws.com:8080/carousel/image/' + id)
+    //   .set("Authorization", window.user.get("AuthToken"))
+    //   .send(formData)
+    //   .end(function(err, response) {
+    //     console.log(err, response);
+    // });
   }
 
   render() {
@@ -22,17 +32,23 @@ export default class UploadPage extends React.Component {
           {height: '100%'}
         )}
       >
-        <input
-          accept="*"
-          //className={classes.input}
-          style={{display: 'none'}}
-          id="outlined-button-file"
-          //multiple
-          type="file"
-        />
+        <input 
+          id="uploadFile" 
+          accept="*" 
+          type="file" 
+          encType="multipart/form-data" 
+          className="form-group" />
+        {/* <button 
+          className="btn btn-primary">
+            Upload image
+        </button> */}
         <label htmlFor="outlined-button-file">
-          <Button variant="outlined" component="span" style={{margin: 'auto'}}>
-            Upload
+          <Button 
+            onClick={this.handleCreateImg.bind(this)} 
+            variant="outlined" 
+            component="span" 
+            style={{margin: 'auto'}}>
+              Upload
             <CloudUploadIcon style={{marginLeft: 1}} />
           </Button>
         </label>
@@ -43,25 +59,3 @@ export default class UploadPage extends React.Component {
 
 // https://blog.gaya.ninja/articles/uploading-files-superagent-in-browser/
 
-
-// //example of request
-// handleCreateImg(id) {
-//         var formData = new FormData();
-//         var files = document.getElementById("uploadFile").files;
-
-//         formData.append("image", files[0]);
-
-//         superagent.put('http://ec2-54-155-37-35.eu-west-1.compute.amazonaws.com:8080/carousel/image/' + id)
-//           .set("Authorization", window.user.get("AuthToken"))
-//           .send(formData)
-//           .end(function(err, response) {
-//             console.log(err, response);
-//         });
-//     }
-    
-// // example of input
-
-// <form className="form-group">
-//   <input id="uploadFile" accept="image/*" type="file" enctype="multipart/form-data" className="form-group" />
-//   <button onClick={this.handleCreateImg.bind(this, query.id)} className="btn btn-primary">Upload image</button>
-// </form>

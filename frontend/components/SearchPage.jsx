@@ -42,11 +42,15 @@ export default class SearchPage extends React.Component {
 
   render() {
     const { data, detail, type, hasNext } = this.state;
+    const { allSuggestion } = this.props;
     console.log(data.length)
 
     return (
       <div style={{height: '100%'}}>
-        <SearchBar height={data.length === 0 ? '100%' : '10%'} searchFunction={this.searchFunction}/>
+        <SearchBar 
+          allSuggestion={allSuggestion}
+          height={data.length === 0 ? '100%' : '10%'}
+          searchFunction={this.searchFunction}/>
         <div className="row" style={{padding: '0px 30px'}}>
           <div className="col-8">
             {data.map((d, idx) => {

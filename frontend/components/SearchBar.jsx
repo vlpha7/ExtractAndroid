@@ -1,21 +1,17 @@
 import React from 'react';
 import commonStyles from '../styles/common';
 import Autosuggest from 'react-autosuggest';
-import { getAllSuggestion } from '../apis';
 
 const getSuggestionValue = suggestion => suggestion;
 
 function getSuggestions(allName, filter) {
   const limit = 5;
   const res = [];
+  const testCase = new RegExp(`${filter.toLowerCase()}`);
   for (var j = 0; j < allName.length; j++) {
     if (res.length >= limit) break;
     if (filter.length > allName[j].length) continue;
-    var isPrefix = true;
-    for (var i = 0; i < filter.length; i++) {
-      if (filter[i] !== allName[j][i]) isPrefix = false;
-    }
-    if (isPrefix) res.push(allName[j]);
+    if (testCase.test(allName[j])) res.push(allName[j]);
   }
   return res;
 }
@@ -31,18 +27,14 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       value: '',
-      allSuggestion: [],
-      suggestions: []
+      suggestions: [],
+      timeoutId: null
     };
     this.createNewKeyword = this.createNewKeyword.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-  }
-
-  componentDidMount() {
-    getAllSuggestion().then(res => this.setState({ allSuggestion: res.body }));
   }
 
   createNewKeyword() {
@@ -55,9 +47,16 @@ class SearchBar extends React.Component {
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(this.state.allSuggestion, value)
-    });
+    const { timeoutId } = this.state;
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    const newId = setTimeout(() => {
+      this.setState({
+        suggestions: getSuggestions(this.props.allSuggestion, value)
+      });
+    }, 500);
+    this.setState({ timeoutId: newId });
   };
 
   onSuggestionsClearRequested = () => {
