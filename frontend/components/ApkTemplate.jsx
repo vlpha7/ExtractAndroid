@@ -54,47 +54,50 @@ export default class ApkTemplate extends React.Component {
 
     return (
       <div style={{width: '100%', margin: '10px auto'}}>
-        <Card>
-          <CardContent>
-            <Typography variant="h5" component="h2">
-              {data.Name}
-            </Typography>
-            <Typography color="textSecondary">
-              {`SHA256: ${data.SHA256}`}
-            </Typography>
-            <Typography color="textSecondary">
-              {`Certificate: ${data["Certificate(Fingerprint)"]["Name"]}`}
-            </Typography>
-            <Typography variant="body2" component="p">
-              {`Size: ${data.Size}`}
-              <br />
-              {data["Minimum SDK"] ? `SDK Version: ${data["Minimum SDK"]["Api Level"]}` : null}
-              <br />
-              {`Number of permission: ${data.Permissions.length}`}
-            </Typography>
-          </CardContent>
-          <CardActions disableSpacing>
-            <IconButton
-              style={expanded ? classes.expandOpen : classes.expand}
-              className="NoOutline"
-              onClick={this.handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
+        { data ?
+          <Card>
             <CardContent>
-              <Typography paragraph>Permissions:</Typography>
-                {data.Permissions.map(p => (
-                  <Typography paragraph key={p.Name}>
-                    {p.Name}
-                  </Typography>
-                ))}
+              <Typography variant="h5" component="h2">
+                {data.Name}
+              </Typography>
+              <Typography color="textSecondary">
+                {`SHA256: ${data.SHA256}`}
+              </Typography>
+              <Typography color="textSecondary">
+                {`Certificate: ${data["Certificate(Fingerprint)"]["Name"]}`}
+              </Typography>
+              <Typography variant="body2" component="p">
+                {`Size: ${data.Size}`}
+                <br />
+                {data["Minimum SDK"] ? `SDK Version: ${data["Minimum SDK"]["Api Level"]}` : null}
+                <br />
+                {`Number of permissions: ${data.Permissions.length}`}
+              </Typography>
             </CardContent>
-          </Collapse>
-        </Card>
+            <CardActions disableSpacing>
+              <IconButton
+                style={expanded ? classes.expandOpen : classes.expand}
+                className="NoOutline"
+                onClick={this.handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>Permissions:</Typography>
+                  {data.Permissions.map(p => (
+                    <Typography paragraph key={p.Name}>
+                      {p.Name}
+                    </Typography>
+                  ))}
+              </CardContent>
+            </Collapse>
+          </Card>
+        : null
+        }
       </div>
     )
   }

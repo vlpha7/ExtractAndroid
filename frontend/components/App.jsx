@@ -22,9 +22,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    getAllSuggestion().then(res => {
-      this.setState({ allSuggestion: res.body.map(s => s.toLowerCase()) })
-    });
+    getAllSuggestion().then(res => this.setState({ allSuggestion: res.body }));
   }
 
   switchPage(pageIdx) {

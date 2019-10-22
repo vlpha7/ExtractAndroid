@@ -11,7 +11,7 @@ function getSuggestions(allName, filter) {
   for (var j = 0; j < allName.length; j++) {
     if (res.length >= limit) break;
     if (filter.length > allName[j].length) continue;
-    if (testCase.test(allName[j])) res.push(allName[j]);
+    if (testCase.test(allName[j].toLowerCase())) res.push(allName[j]);
   }
   return res;
 }
