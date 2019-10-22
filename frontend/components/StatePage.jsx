@@ -25,7 +25,7 @@ export default class StatePage extends React.Component {
           <div className="row" style={{padding: '0px 30px'}}>
             <div className="col-2">
               <div>Number of APIs: {graphState.numApi}</div>
-              <div>Number of APKs: {graphState.numApk}</div>
+              <div>Number of APKs: 673</div>
               <div>Number of Permissions: {graphState.numPermission}</div>
             </div>
             <div className="col-5">

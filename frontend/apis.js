@@ -25,3 +25,18 @@ export function getGraphState() {
 export function getAllSuggestion() {
   return request.get(`${backendServer}/api/allSuggestion`)
 }
+
+export function uploadApkJson(formData) {
+  return request.post(`${backendServer}/api/apkFileUpload`)
+    //.set('Content-Type', 'multipart/form-data')  
+    // .timeout({
+    //   response: 500000000,  // Wait 5 seconds for the server to start sending,
+    //   deadline: 600000000, // but allow 1 minute for the file to finish loading.
+    // })
+    .send(formData);
+}
+
+export function uploadApkToComp(formData) {
+  return request.post(`${backendServer}/api/apkFileComp`)
+    .send(formData);
+}

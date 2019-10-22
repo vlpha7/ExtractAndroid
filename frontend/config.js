@@ -273,4 +273,4 @@ export const apks = [
   }
 ]
 
-export const backendServer = "https://d3a9af54.ngrok.io";
+export const backendServer = "https://c995a2b0.ngrok.io";
